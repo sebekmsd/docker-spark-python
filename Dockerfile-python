@@ -1,0 +1,38 @@
+FROM arkhotech/spark
+
+USER root
+
+RUN apt-get install -y python
+
+RUN apt-get install -y python-pip python-dev build-essential 
+
+RUN pip install --upgrade pip 
+
+RUN pip install pyspark 
+
+USER root 
+
+RUN wget http://archive.apache.org/dist/hadoop/common/hadoop-2.8.3/hadoop-2.8.3.tar.gz 
+
+RUN gunzip hadoop-2.8.3.tar.gz ;\ 
+    tar -xvf hadoop-2.8.3.tar ;\ 
+    rm hadoop-2.8.3.tar; \
+    pip install awscli --upgrade --user ;\
+    pip install boto3 ;\
+    chown -R spark:spark /opt/*
+    
+ENV HADOOP_HOME=/opt/hadoop-2.8.3
+
+ENV HADOOP_CLASSPATH=$HADOOP_HOME/share/hadoop/tools/lib
+
+USER spark
+
+COPY spark.properties $SPARK_HOME/conf/spark-default.conf
+
+WORKDIR /opt
+
+COPY spark.properties $SPARK_HOME/conf/spark-defaults.conf
+
+COPY spark-env.sh /opt/spark/conf/spark-env.sh 
+
+CMD $SPARK_HOME/bin/pyspark
