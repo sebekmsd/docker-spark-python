@@ -49,4 +49,9 @@ COPY spark.properties $SPARK_HOME/conf/spark-defaults.conf
 
 COPY spark-env.sh /opt/spark/conf/spark-env.sh 
 
+#Instalar el driver para Redshift
+RUN wget https://jdbc.postgresql.org/download/postgresql-42.2.4.jar ; \
+    cp postgresql-42.2.4.jar /opt/spark/jars ;\
+    cp postgresql-42.2.4.jar $HADOOP_HOME/share/hadoop/tools/lib
+
 CMD $SPARK_HOME/bin/pyspark
