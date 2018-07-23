@@ -2,8 +2,8 @@ version: "3.0"
 
 services:
   master:
-    image: "arkhotech/spark:python"
-    tty: true
+    image: "arkhotech/spark-python"
+    hostname: master
     ports:
      - 8080:8080 
     volumes:
@@ -14,26 +14,18 @@ services:
     networks:
      - sparknet
     command: ["/opt/spark/bin/spark-class","org.apache.spark.deploy.master.Master"]
-    environment:
-     - AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY 
-     - AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID
-     - AWS_DEFAULT_REGION=us-east-1 
+
   node:  
-    image: "arkhotech/spark:python"
+    image: "arkhotech/spark-python"
     networks:
      - sparknet  
-    ports:
-     - 8081:8081
     volumes:
+     - ./input:/opt/input
      - ./spark-env.sh:/opt/spark/conf/spark-env.sh
      - ./spark.properties:/opt/spark/conf/spark-defaults.conf 
     depends_on: 
      - master    
     command: ["/opt/spark/bin/spark-class","org.apache.spark.deploy.worker.Worker","spark://master:7077"]
-    environment:
-     - AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY 
-     - AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID
-     - AWS_DEFAULT_REGION=us-east-1 
 networks:
    sparknet:
-      driver: bridge
+      driver: bridge  #Cambiar por Overlay si esta en un Swarm
