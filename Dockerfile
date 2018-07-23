@@ -57,7 +57,7 @@ RUN wget https://jdbc.postgresql.org/download/postgresql-42.2.4.jar ; \
 LABEL maintainer="msilva@arkhotech.com" \
       vendor="Arkhotech SpA" \
       version="1.0" \
-      description: "Contendor Spark para ambiente de desarrollo y multi nodo"
+      description="Contendor Spark para ambiente de desarrollo y multi nodo"
 
 
 
