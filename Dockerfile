@@ -47,6 +47,8 @@ WORKDIR /opt
 
 COPY spark.properties $SPARK_HOME/conf/spark-defaults.conf
 
-COPY spark-env.sh /opt/spark/conf/spark-env.sh 
+COPY spark-env.sh /opt/spark/conf/spark-env.sh
+
+COPY yarn-site.xml $HADOOP_HOME/etc/hadoop/yarn-site.xml
 
 CMD $SPARK_HOME/bin/pyspark
