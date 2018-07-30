@@ -51,4 +51,9 @@ COPY spark-env.sh /opt/spark/conf/spark-env.sh
 
 COPY yarn-site.xml $HADOOP_HOME/etc/hadoop/yarn-site.xml
 
+LABEL maintainer="msilva@arkhotech.com" \
+      vendor="Arkhotech SpA" \
+      version="1.0" \
+      description="Contendor Spark para ambiente de desarrollo y multi nodo"
+
 CMD $SPARK_HOME/bin/pyspark
