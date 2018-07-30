@@ -55,9 +55,9 @@ RUN wget https://jdbc.postgresql.org/download/postgresql-42.2.4.jar ; \
     cp postgresql-42.2.4.jar $HADOOP_HOME/share/hadoop/tools/lib
 
 LABEL maintainer="msilva@arkhotech.com" \
-      com.arkhotech.vendor= "Arkhotech SpA" \
+      vendor="Arkhotech SpA" \
       version="1.0" \
-      description: "Contendor Spark para ambiente de desarrollo y multi nodo"
+      description="Contendor Spark para ambiente de desarrollo y multi nodo"
 
 
 
