@@ -21,7 +21,8 @@ RUN gunzip hadoop-2.8.3.tar.gz ;\
 
 RUN mv /opt/spark-2.1.0-bin-hadoop2.7 /opt/spark
 
-RUN apt-get install -y python python-pip python-dev build-essential 
+RUN apt-get update; \
+    apt-get install -y python python-pip python-dev build-essential
 
 RUN pip install --upgrade pip 
 
