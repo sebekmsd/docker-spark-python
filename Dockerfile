@@ -25,7 +25,7 @@ RUN apt-get install -y python python-pip python-dev build-essential
 
 RUN pip install --upgrade pip 
 
-RUN pip install pyspark 
+RUN pip install pyspark; pip install boto3
      
 USER spark 
 
